@@ -1,4 +1,4 @@
-# wordpress-pack (instalación de paquetes al clonar)
+# LAMP (instalación de paquetes al clonar)
 
 IMPORTANTE: Git no ejecuta scripts automáticamente al hacer `git clone`. Esto es una medida de seguridad.
 Para instalar los paquetes (apache2, php y mariadb) después de clonar, usa una de las siguientes opciones:
