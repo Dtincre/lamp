@@ -1,19 +1,18 @@
-# LAMP (instalación de paquetes al clonar)
-
+# LAMP 
 IMPORTANTE: Git no ejecuta scripts automáticamente al hacer `git clone`. Esto es una medida de seguridad.
 Para instalar los paquetes (apache2, php y mariadb) después de clonar, usa una de las siguientes opciones:
 
-1) Método recomendado (manual y seguro)
-   git clone https://github.com/Dtincre/wordpress-pack.git ;   
-   cd wordpress-pack ;   
+1) Instalación LAMP
+   git clone https://github.com/Dtincre/lamp.git ;   
+   cd lamp ;   
    chmod +x install.sh ;   # hay que otorgarle permisos de ejecución ;   
    ./install.sh ;   # te pedirá confirmación ;   
    # o para no interactuar:
    ./install.sh -y
-
-El repositorio incluye:
-- install.sh          : script para instalar paquetes en Debian/Ubuntu.
-- .githooks/post-checkout : hook de ejemplo que puede ejecutar install.sh una vez que habilites hooks.
-- install-hooks.sh    : script para configurar core.hooksPath a .githooks.
-- Dockerfile          : imagen Debian con los paquetes instalados.
-```
+2) Instalación Base De Datos   
+   chmod +x db.sh ;   
+   ./db.sh ;   
+   # Glosario (cuando solicita un usuario/base de datos):
+   # usuario/db   =   Crea el Usuario ó la Base de datos
+   # --usuario/db   =   Elimina el Usuario ó la base de datos
+   # *   =   Omite introducir cualquier parámetro y no realiza ninguna acción
