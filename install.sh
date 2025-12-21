@@ -54,3 +54,25 @@ else
 fi
 
 echo "Instalación finalizada."
+
+# --- INICIO DE CONFIGURACIÓN DE BASE DE DATOS ---
+
+# Pedir datos al usuario
+read -p "nombre de la base de datos: " db_name
+read -p "Nombre de usuario con todos los permisos: " db_user
+read -p "Contraseña del usuario: " db_pass
+
+echo "Ejecutando configuración en MariaDB..."
+
+# Ejecutar los comandos en MariaDB usando sudo
+$SUDO mysql <<EOF
+CREATE DATABASE $db_name ;
+CREATE USER '$db_user'@'localhost' IDENTIFIED BY '$db_pass' ;
+GRANT ALL PRIVILEGES ON $db_name.* TO '$db_user'@'localhost' ;
+FLUSH PRIVILEGES ;
+exit
+EOF
+
+echo "Base de datos y usuario creados correctamente."
+
+# --- FIN DEL SCRIPT ---
