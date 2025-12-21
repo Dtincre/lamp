@@ -10,7 +10,7 @@ Uso: ./install.sh o ./install.sh -y
 EOF
 }
 
-# (Mantenemos la lógica de instalación de paquetes igual)
+# --- Lógica de instalación (se mantiene igual) ---
 AUTO_YES=0
 while getopts "y" opt; do
   case $opt in
@@ -32,15 +32,14 @@ fi
 
 echo "Instalación finalizada."
 
-# --- NUEVA LÓGICA DE BASE DE DATOS ---
+# --- SECCIÓN DE BASE DE DATOS Y USUARIOS ---
 
 read -p "nombre de la base de datos: " db_input
 read -p "Nombre de usuario con todos los permisos: " user_input
-read -p "Contraseña del usuario: " db_pass
 
 # 1. Lógica para la Base de Datos
 if [[ "$db_input" == "--"* ]]; then
-    DB_NAME="${db_input#--}" # Quita los guiones del principio
+    DB_NAME="${db_input#--}" 
     echo "Borrando base de datos: $DB_NAME"
     $SUDO mysql -e "DROP DATABASE IF EXISTS $DB_NAME;"
 elif [[ "$db_input" == "*" ]]; then
@@ -58,9 +57,10 @@ if [[ "$user_input" == "--"* ]]; then
 elif [[ "$user_input" == "*" ]]; then
     echo "Omitiendo comando de Usuario."
 else
-    # Si no es borrar ni omitir, creamos y damos permisos
-    # Solo damos permisos si la DB también se creó o ya existía (no si se marcó *)
-    echo "Creando usuario y asignando permisos..."
+    # Aquí es donde pedimos la contraseña SOLO si estamos creando un usuario
+    read -p "Contraseña del usuario: " db_pass
+    
+    echo "Creando usuario y asignando privilegios..."
     $SUDO mysql <<EOF
 CREATE USER IF NOT EXISTS '$user_input'@'localhost' IDENTIFIED BY '$db_pass';
 GRANT ALL PRIVILEGES ON ${db_input}.* TO '$user_input'@'localhost';
