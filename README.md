@@ -6,10 +6,9 @@ Para instalar los paquetes (apache2, php y mariadb) después de clonar, usa una 
    git clone https://github.com/Dtincre/lamp.git ;   
    cd lamp ;   
    chmod +x install.sh ;   # hay que otorgarle permisos de ejecución ;   
-   ./install.sh ;   # te pedirá confirmación ;   
-   # o para no interactuar:
-   ./install.sh -y
-2) Instalación Base De Datos   
+   ./install.sh ;
+   
+3) Instalación Base De Datos   
    chmod +x db.sh ;   
    ./db.sh ;   
    # Glosario (cuando solicita un usuario/base de datos):
