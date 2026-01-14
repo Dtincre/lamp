@@ -1,7 +1,12 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-PACKAGES=(apache2 php php-mysql php-xml php-mbstring php-curl php-gd mariadb-server)
+# Se han añadido: unzip, php-zip, php-intl, php-soap
+PACKAGES=(
+  apache2 mariadb-server php php-mysql php-xml 
+  php-curl php-zip php-gd php-intl php-mbstring 
+  php-soap unzip
+)
 
 show_help() {
   cat <<EOF
